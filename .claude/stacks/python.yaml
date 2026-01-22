@@ -1,0 +1,72 @@
+# Python Stack Configuration
+# Polyglot CLI - Stack detection and tool mapping
+
+name: python
+prefix: py
+
+# Files that indicate this is a Python project (priority order)
+detection:
+  - pyproject.toml
+  - requirements.txt
+  - uv.lock
+  - setup.py
+  - Pipfile
+
+# Tool mapping for common actions
+tools:
+  # Package Management
+  install:
+    command: uv pip install -r requirements.txt
+    single: uv pip install
+    dev: uv pip install --dev
+
+  # Formatting (black primary, ruff fallback)
+  format:
+    primary: black .
+    fallback: ruff format .
+    check: black --check .
+
+  # Import Sorting
+  imports:
+    command: isort .
+    check: isort --check-only .
+
+  # Linting
+  lint:
+    command: ruff check .
+    fix: ruff check . --fix
+
+  # Type Checking
+  typecheck:
+    command: mypy .
+    strict: mypy --strict .
+
+  # Testing
+  test:
+    command: pytest
+    verbose: pytest -v
+    coverage: pytest --cov
+
+  # Running
+  run:
+    command: python
+    module: python -m
+
+  # Build
+  build:
+    command: uv build
+
+# Quality pipeline (run in order)
+quality_pipeline:
+  - black .
+  - isort .
+  - ruff check . --fix
+  - mypy .
+  - pytest
+
+# Common configuration files
+config_files:
+  lint: pyproject.toml  # [tool.ruff]
+  format: pyproject.toml  # [tool.black]
+  typecheck: pyproject.toml  # [tool.mypy]
+  test: pyproject.toml  # [tool.pytest]

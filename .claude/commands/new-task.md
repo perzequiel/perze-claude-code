@@ -69,6 +69,15 @@ Define "done":
 - [ ] Step 4
 
 ### Files to Modify/Create
+
+**Python Example**
+```
+src/main.py (modify)
+src/services/new_service.py (create)
+src/utils.py (modify)
+```
+
+**TypeScript Example**
 ```
 app/page.tsx (modify)
 components/NewComponent.tsx (create)
@@ -76,8 +85,19 @@ lib/utils.ts (modify)
 ```
 
 ### Dependencies
+
+**Python**
+```bash
+uv add package-name
+# or
+pip install package-name
+```
+
+**TypeScript/JavaScript**
 ```bash
 npm install package-name
+# or
+pnpm add package-name
 ```
 
 ### Testing Strategy

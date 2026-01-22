@@ -1,0 +1,65 @@
+# TypeScript Stack Configuration
+# Polyglot CLI - Stack detection and tool mapping
+
+name: typescript
+prefix: ts
+
+# Files that indicate this is a TypeScript project (priority order)
+detection:
+  - package.json
+  - tsconfig.json
+  - package-lock.json
+  - yarn.lock
+  - pnpm-lock.yaml
+
+# Tool mapping for common actions
+tools:
+  # Package Management
+  install:
+    command: npm install
+    single: npm install
+    dev: npm install --save-dev
+
+  # Formatting
+  format:
+    command: npx prettier --write .
+    check: npx prettier --check .
+
+  # Linting
+  lint:
+    command: npx eslint .
+    fix: npx eslint . --fix
+
+  # Type Checking
+  typecheck:
+    command: npx tsc --noEmit
+    strict: npx tsc --noEmit --strict
+
+  # Testing
+  test:
+    command: npm test
+    verbose: npm test -- --verbose
+    coverage: npm test -- --coverage
+
+  # Running
+  run:
+    dev: npm run dev
+    start: npm start
+
+  # Build
+  build:
+    command: npm run build
+
+# Quality pipeline (run in order)
+quality_pipeline:
+  - npx eslint . --fix
+  - npx prettier --write .
+  - npx tsc --noEmit
+  - npm test
+
+# Common configuration files
+config_files:
+  lint: .eslintrc.json
+  format: .prettierrc
+  typecheck: tsconfig.json
+  test: jest.config.js  # or vitest.config.ts

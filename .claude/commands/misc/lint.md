@@ -1,6 +1,7 @@
 ---
 description: Run linting and fix code quality issues
 model: claude-sonnet-4-5
+polyglot: true
 ---
 
 Run linting and fix code quality issues in the codebase.
@@ -9,12 +10,84 @@ Run linting and fix code quality issues in the codebase.
 
 $ARGUMENTS
 
-## Lint Strategy for Solo Developers
+## Stack Detection
 
-### 1. **Run Linting Commands**
+First, detect the project stack:
+1. Check for `py` or `ts` prefix in the command
+2. If no prefix, auto-detect based on project files:
+   - **Python**: `pyproject.toml`, `requirements.txt`, `uv.lock`
+   - **TypeScript**: `package.json`, `tsconfig.json`
+
+---
+
+## Python Stack (py)
+
+### Run Linting Commands
 
 ```bash
-# ESLint (JavaScript/TypeScript)
+# Format code (black primary)
+black .
+
+# Sort imports
+isort .
+
+# Lint and auto-fix
+ruff check . --fix
+
+# Type check
+mypy .
+
+# All together
+black . && isort . && ruff check . --fix && mypy .
+```
+
+### Common Python Issues
+
+**Type Errors**
+- Missing type annotations (use: `mypy --strict`)
+- Incorrect return types
+- Optional vs required arguments
+
+**Style Issues**
+- Line length > 88 chars (black default)
+- Import order (isort)
+- Unused imports/variables (ruff F401, F841)
+
+**Code Quality**
+- Unused variables (ruff F841)
+- Undefined names (ruff F821)
+- Star imports (ruff F403)
+
+### Python Configuration
+
+**pyproject.toml**
+```toml
+[tool.black]
+line-length = 88
+target-version = ['py312']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "I", "N", "W"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+```
+
+---
+
+## TypeScript Stack (ts)
+
+### Run Linting Commands
+
+```bash
+# ESLint
 npm run lint
 npx eslint . --fix
 
@@ -28,9 +101,9 @@ npx prettier --write .
 npm run lint && npx tsc --noEmit && npx prettier --write .
 ```
 
-### 2. **Common ESLint Issues**
+### Common TypeScript Issues
 
-**TypeScript Errors**
+**Type Errors**
 - Missing type annotations
 - `any` types used
 - Unused variables
@@ -46,35 +119,8 @@ npm run lint && npx tsc --noEmit && npx prettier --write .
 - Unused imports
 - Console.log statements
 - Debugger statements
-- TODO comments
 
-**Best Practices**
-- No var, use const/let
-- Prefer const over let
-- No nested ternaries
-- Consistent return statements
-
-### 3. **Auto-Fix What You Can**
-
-**Safe Auto-Fixes**
-```bash
-# Fix formatting
-prettier --write .
-
-# Fix ESLint auto-fixable rules
-eslint --fix .
-
-# Fix import order
-eslint --fix --rule 'import/order: error' .
-```
-
-**Manual Fixes Needed**
-- Type annotations
-- Logic errors
-- Missing error handling
-- Accessibility issues
-
-### 4. **Lint Configuration**
+### TypeScript Configuration
 
 **ESLint Config** (`.eslintrc.json`)
 ```json
@@ -101,62 +147,25 @@ eslint --fix --rule 'import/order: error' .
 }
 ```
 
-### 5. **Priority Fixes**
+---
+
+## Priority Fixes (Both Stacks)
 
 **High Priority** (fix immediately)
 - Type errors blocking build
 - Security vulnerabilities
 - Runtime errors
-- Broken accessibility
 
 **Medium Priority** (fix before commit)
 - Missing type annotations
 - Unused variables
 - Code style violations
-- TODO comments
 
 **Low Priority** (fix when convenient)
 - Formatting inconsistencies
-- Comment improvements
 - Minor refactoring opportunities
 
-### 6. **Pre-Commit Hooks** (Recommended)
-
-**Install Husky + lint-staged**
-```bash
-npm install -D husky lint-staged
-npx husky init
-```
-
-**Configure** (`.husky/pre-commit`)
-```bash
-npx lint-staged
-```
-
-**lint-staged config** (`package.json`)
-```json
-{
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ]
-  }
-}
-```
-
-### 7. **VSCode Integration**
-
-**Settings** (`.vscode/settings.json`)
-```json
-{
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "typescript.tsdk": "node_modules/typescript/lib"
-}
-```
+---
 
 ## What to Generate
 
@@ -164,39 +173,5 @@ npx lint-staged
 2. **Auto-Fix Results** - What was automatically fixed
 3. **Manual Fix Suggestions** - Issues requiring manual intervention
 4. **Priority List** - Ordered by severity
-5. **Configuration Recommendations** - Improve lint setup
-
-## Common Fixes
-
-**Remove Unused Imports**
-```typescript
-// Before
-import { A, B, C } from 'lib'
-
-// After
-import { A, C } from 'lib'  // B was unused
-```
-
-**Add Type Annotations**
-```typescript
-// Before
-function process(data) {
-  return data.map(x => x.value)
-}
-
-// After
-function process(data: DataItem[]): number[] {
-  return data.map(x => x.value)
-}
-```
-
-**Fix Missing Keys**
-```typescript
-// Before
-{items.map(item => <div>{item.name}</div>)}
-
-// After
-{items.map(item => <div key={item.id}>{item.name}</div>)}
-```
 
 Focus on fixes that improve code quality and prevent bugs. Run linting before every commit.

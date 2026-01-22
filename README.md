@@ -1,6 +1,14 @@
 # Edmund's Claude Code Setup
 
-My personal Claude Code configuration for productive web development. This plugin provides **14 slash commands** and **11 specialized AI agents** to supercharge your development workflow.
+My personal Claude Code configuration for productive full-stack development. This plugin provides **14 slash commands** and **11 specialized AI agents** with **polyglot support** (Python + TypeScript) to supercharge your development workflow.
+
+## 🌍 Polyglot Support
+
+**Auto-detects your project stack** and adapts commands accordingly:
+- **Python**: FastAPI, Django, Flask + Black, Ruff, Mypy, Pytest
+- **TypeScript**: Next.js, React + ESLint, Prettier, TSC, Vitest
+
+All development commands automatically detect your stack or can be forced with `py` or `ts` prefixes.
 
 ## Quick Install
 
@@ -86,33 +94,74 @@ cd edmunds-claude-code
 
 ## Best For
 
-- Next.js developers
-- TypeScript projects
+**Python Developers**
+- FastAPI / Django / Flask projects
+- Python data services
+- Backend API development
+- ML/AI model APIs
+
+**TypeScript Developers**
+- Next.js applications
+- React projects
 - Supabase users
-- React developers
-- Full-stack engineers
+- Full-stack web apps
+
+**Polyglot Teams**
+- Microservices architectures (Python backend + TypeScript frontend)
+- Full-stack engineers working across stacks
 
 ## Usage Examples
+
+### Auto-Detection (Recommended)
+
+```bash
+# Commands automatically detect your stack
+/lint                    # Runs ruff (Python) or eslint (TypeScript)
+/api-new /users          # FastAPI or Next.js API route
+/code-optimize src/      # Python or TypeScript optimizations
+```
+
+### Force Specific Stack
+
+```bash
+# Force Python
+py lint
+py api-new /users
+py api-test /api/chat
+
+# Force TypeScript
+ts lint
+ts api-new /users
+ts code-cleanup components/Button.tsx
+```
 
 ### Planning a Feature
 
 ```bash
 /feature-plan
 # Then describe your feature idea
+# Provides stack-agnostic implementation plan
 ```
 
 ### Creating an API
 
+**Python (FastAPI)**
 ```bash
-/api-new
-# Claude will scaffold a complete API route with types, validation, and error handling
+/api-new /users
+# Scaffolds FastAPI route with Pydantic models, validation, type hints
+```
+
+**TypeScript (Next.js)**
+```bash
+/api-new /users
+# Scaffolds Next.js API route with Zod validation, TypeScript types
 ```
 
 ### Research Tech Choices
 
 Just ask Claude questions like:
 - "Should I use WebSockets or SSE?"
-- "How should I structure this database?"
+- "FastAPI vs Django for this project?"
 - "What's the best library for X?"
 
 The tech-stack-researcher agent automatically activates and provides detailed, researched answers.
@@ -120,15 +169,34 @@ The tech-stack-researcher agent automatically activates and provides detailed, r
 ## Philosophy
 
 This setup emphasizes:
-- **Type Safety**: Never uses `any` types
-- **Best Practices**: Follows modern Next.js/React patterns
-- **Productivity**: Reduces repetitive scaffolding
+- **Type Safety**: Python type hints (mypy strict) + TypeScript strict mode
+- **Best Practices**: Modern patterns (FastAPI/Django for Python, Next.js/React for TS)
+- **Polyglot Support**: Seamless stack detection and adaptation
+- **Productivity**: Reduces repetitive scaffolding across all stacks
 - **Research**: AI-powered tech decisions with evidence
+
+## Stack Detection
+
+Commands automatically detect your project stack based on these files:
+
+| Stack | Detection Files |
+|-------|----------------|
+| Python | `pyproject.toml`, `requirements.txt`, `uv.lock` |
+| TypeScript | `package.json`, `tsconfig.json` |
+
+### Tool Mapping
+
+| Command | Python | TypeScript |
+|---------|--------|------------|
+| `format` | `black .` | `prettier --write .` |
+| `lint` | `ruff check . --fix` | `eslint . --fix` |
+| `typecheck` | `mypy .` | `tsc --noEmit` |
+| `test` | `pytest` | `npm test` |
 
 ## Requirements
 
 - Claude Code 2.0.13+
-- Works with any project (optimized for Next.js + Supabase)
+- Works with any project (Python, TypeScript, or polyglot)
 
 ## Customization
 
@@ -151,4 +219,4 @@ Created by Edmund
 
 ---
 
-**Note**: This is my personal setup that I've refined over time. Commands are optimized for Next.js + Supabase workflows but work great with any modern web stack.
+**Note**: This is my personal setup that I've refined over time. Commands support both Python (FastAPI/Django) and TypeScript (Next.js/React) workflows with automatic stack detection.

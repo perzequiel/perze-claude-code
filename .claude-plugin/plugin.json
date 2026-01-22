@@ -1,29 +1,49 @@
 {
-  "name": "edmunds-claude-code",
-  "version": "1.0.0",
-  "description": "Edmund's personal Claude Code setup with 14 productivity commands and 11 specialized AI agents for modern web development",
-  "author": "Edmund",
+  "name": "perze-claude-code",
+  "version": "2.0.0",
+  "description": "Polyglot Claude Code plugin with 14 productivity commands and 11 specialized AI agents. Supports Python (FastAPI, pytest, ruff) and TypeScript (Next.js, React) stacks with automatic detection.",
+  "author": "Perze",
   "license": "MIT",
+  "polyglot": {
+    "enabled": true,
+    "stacks": [
+      {
+        "name": "python",
+        "prefix": "py",
+        "config": ".claude/stacks/python.yaml",
+        "detection": ["pyproject.toml", "requirements.txt", "uv.lock"]
+      },
+      {
+        "name": "typescript",
+        "prefix": "ts",
+        "config": ".claude/stacks/typescript.yaml",
+        "detection": ["package.json", "tsconfig.json"]
+      }
+    ]
+  },
   "commands": [
     {
       "name": "new-task",
       "path": ".claude/commands/new-task.md",
-      "description": "Analyze code for performance issues and suggest optimizations"
+      "description": "Analyze task complexity and create implementation plan"
     },
     {
       "name": "code-explain",
       "path": ".claude/commands/misc/code-explain.md",
-      "description": "Generate detailed code explanations"
+      "description": "Explain code with diagrams and examples (polyglot: py/ts)",
+      "polyglot": true
     },
     {
       "name": "code-optimize",
       "path": ".claude/commands/misc/code-optimize.md",
-      "description": "Optimize code for performance"
+      "description": "Optimize code for performance (polyglot: py/ts)",
+      "polyglot": true
     },
     {
       "name": "code-cleanup",
       "path": ".claude/commands/misc/code-cleanup.md",
-      "description": "Clean up and refactor code"
+      "description": "Refactor and clean up code (polyglot: py/ts)",
+      "polyglot": true
     },
     {
       "name": "feature-plan",
@@ -33,27 +53,32 @@
     {
       "name": "lint",
       "path": ".claude/commands/misc/lint.md",
-      "description": "Run linting and fix issues"
+      "description": "Run linting and fix issues (polyglot: ruff/eslint)",
+      "polyglot": true
     },
     {
       "name": "docs-generate",
       "path": ".claude/commands/misc/docs-generate.md",
-      "description": "Generate documentation"
+      "description": "Generate documentation (polyglot: docstrings/jsdoc)",
+      "polyglot": true
     },
     {
       "name": "api-new",
       "path": ".claude/commands/api/api-new.md",
-      "description": "Create new API endpoint"
+      "description": "Create new API endpoint (polyglot: FastAPI/Next.js)",
+      "polyglot": true
     },
     {
       "name": "api-test",
       "path": ".claude/commands/api/api-test.md",
-      "description": "Test API endpoints"
+      "description": "Test API endpoints (polyglot: pytest/vitest)",
+      "polyglot": true
     },
     {
       "name": "api-protect",
       "path": ".claude/commands/api/api-protect.md",
-      "description": "Add API protection and validation"
+      "description": "Add API security (polyglot: FastAPI/Next.js auth)",
+      "polyglot": true
     },
     {
       "name": "component-new",
@@ -151,12 +176,17 @@
     }
   },
   "tags": [
-    "productivity",
-    "nextjs",
-    "supabase",
+    "polyglot",
+    "python",
+    "fastapi",
+    "pytest",
+    "ruff",
     "typescript",
+    "nextjs",
     "react",
+    "supabase",
     "api",
+    "productivity",
     "development",
     "mcp"
   ]
