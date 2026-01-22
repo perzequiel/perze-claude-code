@@ -1,18 +1,18 @@
 {
-  "name": "edmunds-claude-code",
+  "name": "perze-claude-code",
   "owner": {
-    "name": "Edmund",
-    "contact": "github.com/edmund-io"
+    "name": "Perze",
+    "contact": "github.com/perzequiel"
   },
-  "description": "Edmund's curated Claude Code setup for productive development",
+  "description": "Perze's curated Claude Code setup for productive development",
   "plugins": [
     {
-      "name": "edmunds-claude-code",
+      "name": "perze-claude-code",
       "source": "./",
       "description": "Personal Claude Code configuration with 14 productivity commands and 11 specialized AI agents for modern web development",
       "version": "1.0.0",
       "author": {
-        "name": "Edmund",
+        "name": "Perze",
         "email": "[email protected]"
       },
       "tags": ["productivity", "nextjs", "supabase", "typescript", "react", "development"]
