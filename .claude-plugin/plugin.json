@@ -1,181 +1,14 @@
 {
   "name": "perze-claude-code",
   "version": "2.0.0",
-  "description": "Polyglot Claude Code plugin with 14 productivity commands and 11 specialized AI agents. Supports Python (FastAPI, pytest, ruff) and TypeScript (Next.js, React) stacks with automatic detection.",
-  "author": "Perze",
+  "description": "Polyglot Claude Code plugin with productivity commands and specialized AI agents. Supports Python (FastAPI, pytest, ruff) and TypeScript (Next.js, React) stacks with automatic detection.",
+  "author": {
+    "name": "Perze",
+    "url": "https://github.com/perzequiel"
+  },
+  "repository": "https://github.com/perzequiel/perze-claude-code",
   "license": "MIT",
-  "polyglot": {
-    "enabled": true,
-    "stacks": [
-      {
-        "name": "python",
-        "prefix": "py",
-        "config": ".claude/stacks/python.yaml",
-        "detection": ["pyproject.toml", "requirements.txt", "uv.lock"]
-      },
-      {
-        "name": "typescript",
-        "prefix": "ts",
-        "config": ".claude/stacks/typescript.yaml",
-        "detection": ["package.json", "tsconfig.json"]
-      }
-    ]
-  },
-  "commands": [
-    {
-      "name": "new-task",
-      "path": ".claude/commands/new-task.md",
-      "description": "Analyze task complexity and create implementation plan"
-    },
-    {
-      "name": "code-explain",
-      "path": ".claude/commands/misc/code-explain.md",
-      "description": "Explain code with diagrams and examples (polyglot: py/ts)",
-      "polyglot": true
-    },
-    {
-      "name": "code-optimize",
-      "path": ".claude/commands/misc/code-optimize.md",
-      "description": "Optimize code for performance (polyglot: py/ts)",
-      "polyglot": true
-    },
-    {
-      "name": "code-cleanup",
-      "path": ".claude/commands/misc/code-cleanup.md",
-      "description": "Refactor and clean up code (polyglot: py/ts)",
-      "polyglot": true
-    },
-    {
-      "name": "feature-plan",
-      "path": ".claude/commands/misc/feature-plan.md",
-      "description": "Plan new feature implementation"
-    },
-    {
-      "name": "lint",
-      "path": ".claude/commands/misc/lint.md",
-      "description": "Run linting and fix issues (polyglot: ruff/eslint)",
-      "polyglot": true
-    },
-    {
-      "name": "docs-generate",
-      "path": ".claude/commands/misc/docs-generate.md",
-      "description": "Generate documentation (polyglot: docstrings/jsdoc)",
-      "polyglot": true
-    },
-    {
-      "name": "api-new",
-      "path": ".claude/commands/api/api-new.md",
-      "description": "Create new API endpoint (polyglot: FastAPI/Next.js)",
-      "polyglot": true
-    },
-    {
-      "name": "api-test",
-      "path": ".claude/commands/api/api-test.md",
-      "description": "Test API endpoints (polyglot: pytest/vitest)",
-      "polyglot": true
-    },
-    {
-      "name": "api-protect",
-      "path": ".claude/commands/api/api-protect.md",
-      "description": "Add API security (polyglot: FastAPI/Next.js auth)",
-      "polyglot": true
-    },
-    {
-      "name": "component-new",
-      "path": ".claude/commands/ui/component-new.md",
-      "description": "Create new React component"
-    },
-    {
-      "name": "page-new",
-      "path": ".claude/commands/ui/page-new.md",
-      "description": "Create new Next.js page"
-    },
-    {
-      "name": "types-gen",
-      "path": ".claude/commands/supabase/types-gen.md",
-      "description": "Generate Supabase TypeScript types"
-    },
-    {
-      "name": "edge-function-new",
-      "path": ".claude/commands/supabase/edge-function-new.md",
-      "description": "Create new Supabase Edge Function"
-    }
-  ],
-  "agents": [
-    {
-      "name": "tech-stack-researcher",
-      "path": ".claude/agents/tech-stack-researcher.md",
-      "description": "Research and recommend technology choices for feature development"
-    },
-    {
-      "name": "backend-architect",
-      "path": ".claude/agents/backend-architect.md",
-      "description": "Design reliable backend systems with focus on data integrity, security, and fault tolerance"
-    },
-    {
-      "name": "deep-research-agent",
-      "path": ".claude/agents/deep-research-agent.md",
-      "description": "Specialist for comprehensive research with adaptive strategies and intelligent exploration"
-    },
-    {
-      "name": "frontend-architect",
-      "path": ".claude/agents/frontend-architect.md",
-      "description": "Create accessible, performant user interfaces with focus on user experience and modern frameworks"
-    },
-    {
-      "name": "learning-guide",
-      "path": ".claude/agents/learning-guide.md",
-      "description": "Teach programming concepts and explain code with focus on understanding through progressive learning"
-    },
-    {
-      "name": "performance-engineer",
-      "path": ".claude/agents/performance-engineer.md",
-      "description": "Optimize system performance through measurement-driven analysis and bottleneck elimination"
-    },
-    {
-      "name": "refactoring-expert",
-      "path": ".claude/agents/refactoring-expert.md",
-      "description": "Improve code quality and reduce technical debt through systematic refactoring and clean code principles"
-    },
-    {
-      "name": "requirements-analyst",
-      "path": ".claude/agents/requirements-analyst.md",
-      "description": "Transform ambiguous project ideas into concrete specifications through systematic requirements discovery"
-    },
-    {
-      "name": "security-engineer",
-      "path": ".claude/agents/security-engineer.md",
-      "description": "Identify security vulnerabilities and ensure compliance with security standards and best practices"
-    },
-    {
-      "name": "system-architect",
-      "path": ".claude/agents/system-architect.md",
-      "description": "Design scalable system architecture with focus on maintainability and long-term technical decisions"
-    },
-    {
-      "name": "technical-writer",
-      "path": ".claude/agents/technical-writer.md",
-      "description": "Create clear, comprehensive technical documentation tailored to specific audiences with focus on usability"
-    }
-  ],
-  "mcpServers": {
-    "context7": {
-      "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp"],
-      "description": "Access up-to-date documentation for any library"
-    },
-    "playwright": {
-      "command": "npx",
-      "args": ["@playwright/mcp@latest"],
-      "description": "Browser automation and web testing capabilities"
-    },
-    "supabase": {
-      "command": "npx",
-      "args": ["-y", "@supabase/mcp-server-supabase"],
-      "description": "Supabase database operations and management"
-    }
-  },
-  "tags": [
+  "keywords": [
     "polyglot",
     "python",
     "fastapi",
@@ -186,8 +19,7 @@
     "react",
     "supabase",
     "api",
-    "productivity",
-    "development",
-    "mcp"
-  ]
+    "productivity"
+  ],
+  "mcpServers": "./.claude/mcp-servers.json"
 }
