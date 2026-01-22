@@ -1,4 +1,4 @@
-# Edmund's Claude Code Setup
+# Perze's Claude Code Setup
 
 My personal Claude Code configuration for productive full-stack development. This plugin provides **14 slash commands** and **11 specialized AI agents** with **polyglot support** (Python + TypeScript) to supercharge your development workflow.
 
@@ -14,10 +14,10 @@ All development commands automatically detect your stack or can be forced with `
 
 ```bash
 # Step 1: Add the marketplace
-/plugin marketplace add edmund-io/edmunds-claude-code
+/plugin marketplace add perzequiel/perze-claude-code
 
 # Step 2: Install the plugin
-/plugin install edmunds-claude-code
+/plugin install perze-claude-code
 ```
 
 ## What's Inside
@@ -73,23 +73,23 @@ All development commands automatically detect your stack or can be forced with `
 
 ```bash
 # Add marketplace
-/plugin marketplace add edmund-io/edmunds-claude-code
+/plugin marketplace add perzequiel/perze-claude-code
 
 # Install plugin
-/plugin install edmunds-claude-code
+/plugin install perze-claude-code
 ```
 
 ### From Local Clone (for development)
 
 ```bash
-git clone https://github.com/edmund-io/edmunds-claude-code.git
-cd edmunds-claude-code
+git clone https://github.com/perzequiel/perze-claude-code.git
+cd perze-claude-code
 
 # Add as local marketplace
-/plugin marketplace add /path/to/edmunds-claude-code
+/plugin marketplace add /path/to/perze-claude-code
 
 # Install plugin
-/plugin install edmunds-claude-code
+/plugin install perze-claude-code
 ```
 
 ## Best For
@@ -216,6 +216,7 @@ MIT - Use freely in your projects
 ## Author
 
 Created by Edmund
+Upgrated by Perze
 
 ---
 

@@ -55,7 +55,7 @@ Convertir el plugin de Claude Code en una herramienta agnóstica de lenguaje que
 
 - [x] Eliminar carpeta `/reference` (contiene reglas de otro proyecto) - ya no existe
 - [x] Actualizar README.md con documentación polyglot
-- [ ] Crear commit con cambios
+- [x] Crear commit con cambios (commit 33966a2)
 
 ---
 
