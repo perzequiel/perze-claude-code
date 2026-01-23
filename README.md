@@ -1,6 +1,6 @@
 # Perze's Claude Code Setup
 
-My personal Claude Code configuration for productive full-stack development. This plugin provides **14 slash commands** and **11 specialized AI agents** with **polyglot support** (Python + TypeScript) to supercharge your development workflow.
+My personal Claude Code configuration for productive full-stack development. This plugin provides **14 slash commands** and **13 specialized AI agents** with **polyglot support** (Python + TypeScript) to supercharge your development workflow.
 
 ## 🌍 Polyglot Support
 
@@ -48,7 +48,7 @@ All development commands automatically detect your stack or can be forced with `
 - `/types-gen` - Generate TypeScript types
 - `/edge-function-new` - Create Edge Functions
 
-### 🤖 Specialized AI Agents (11)
+### 🤖 Specialized AI Agents (13)
 
 **Architecture & Planning**
 - **tech-stack-researcher** - Technology choice recommendations with trade-offs
@@ -61,6 +61,10 @@ All development commands automatically detect your stack or can be forced with `
 - **refactoring-expert** - Systematic refactoring and clean code
 - **performance-engineer** - Measurement-driven optimization
 - **security-engineer** - Vulnerability identification and security standards
+- **debugger** - Systematic bug diagnosis and root cause analysis
+
+**Execution & Automation**
+- **project-executor** - Autonomous plan execution with progress tracking
 
 **Documentation & Research**
 - **technical-writer** - Clear, comprehensive documentation
