@@ -10,8 +10,8 @@
     "description": "Browser automation and web testing capabilities"
   },
   "supabase": {
-    "command": "npx",
-    "args": ["-y", "@supabase/mcp-server-supabase"],
+    "type": "http",
+    "url": "https://mcp.supabase.com/mcp",
     "description": "Supabase database operations and management"
   }
 }
