@@ -1,6 +1,6 @@
 {
   "name": "perze-claude-code",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Polyglot Claude Code plugin with productivity commands and specialized AI agents. Supports Python (FastAPI, pytest, ruff) and TypeScript (Next.js, React) stacks with automatic detection.",
   "author": {
     "name": "Perze",

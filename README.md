@@ -48,7 +48,7 @@ All development commands automatically detect your stack or can be forced with `
 - `/types-gen` - Generate TypeScript types
 - `/edge-function-new` - Create Edge Functions
 
-### 🤖 Specialized AI Agents (14)
+### 🤖 Specialized AI Agents (15)
 
 **Architecture & Planning**
 - **tech-stack-researcher** - Technology choice recommendations with trade-offs
@@ -63,6 +63,7 @@ All development commands automatically detect your stack or can be forced with `
 - **performance-engineer** - Measurement-driven optimization
 - **security-engineer** - Vulnerability identification and security standards
 - **debugger** - Systematic bug diagnosis and root cause analysis
+- **test-planner** - Generate testing strategies with test cases and CI/CD integration
 
 **Execution & Automation**
 - **project-executor** - Autonomous plan execution with progress tracking
